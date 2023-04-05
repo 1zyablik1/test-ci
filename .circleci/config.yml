@@ -3,25 +3,22 @@ version: 2.1
 jobs:
   build:
     environment:
-      UNITY_USERNAME: your_unity_username
-      UNITY_PASSWORD: your_unity_password
-      ANDROID_HOME: C:\Android\sdk
-      JAVA_HOME: C:\Program Files\Java\jdk1.8.0_251
-      GRADLE_USER_HOME: C:\Users\circleci\.gradle
+      UNITY_VERSION: "2021.3.19f1"
+      UNITY_DOWNLOAD_CACHE: "~/unity_download_cache"
     working_directory: ~/project
-    windows: true
+    executor:
+      name: windows/Unity
+      shell: powershell.exe
     steps:
       - checkout
-      - run: echo "y" | "$UNITY_PATH/Editor/Unity.exe" -quit -batchmode -username "$UNITY_USERNAME" -password "$UNITY_PASSWORD" -serial "$UNITY_SERIAL" -nographics -logFile "$UNITY_LOG_FILE"
-      - run: echo "y" | "$UNITY_PATH/Editor/Unity.exe" -quit -batchmode -nographics -logFile "$UNITY_LOG_FILE" -projectPath "$UNITY_PROJECT_PATH" -executeMethod BuildScript.BuildAndroid
-      - run: "$ANDROID_HOME/tools/bin/sdkmanager.bat \"build-tools;30.0.3\" \"platforms;android-30\""
-      - run: Set-Content -Path 'C:\Users\circleci\.android\repositories.cfg' -Value '### User defined repositories path'
-      - run: echo "sdk.dir=$ANDROID_HOME" > "$UNITY_PROJECT_PATH/LocalProperties.properties"
-      - run: echo "Unity build complete"
-      - store_artifacts:
-          path: ~/repo/Builds
-          destination: builds
-workflows:
-  build-test-deploy:
-    jobs:
-      - build
+      - run: choco install jdk8 -y
+      - run: choco install git -y
+      - run: git lfs install --skip-smudge
+      - run: |
+          $progressPreference = 'SilentlyContinue'
+          $webClient = New-Object System.Net.WebClient
+          $webClient.DownloadFile("https://beta.unity3d.com/download/${{ env.UNITY_VERSION }}/MacEditorInstaller/Unity-${{ env.UNITY_VERSION }}.exe", "$(Join-Path $env:USERPROFILE 'UnitySetup.exe')")
+      - run: Start-Process -FilePath "$(Join-Path $env:USERPROFILE 'UnitySetup.exe')" -ArgumentList '/S /D=$(Join-Path ${env:ProgramFiles(x86)} "Unity")' -Wait
+      - run: Add-Content -Path $(Join-Path $env:USERPROFILE '.bashrc') -Value 'export PATH="$PATH:/c/Program Files (x86)/Unity/Editor"'
+      - run: source ~/.bashrc
+      - run: unity -quit -batchmode -createProject $(Join-Path $env:USERPROFILE 'project') -logFile $(Join-Path $env:USERPROFILE 'unity.log')
