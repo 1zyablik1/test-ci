@@ -1,24 +1,22 @@
 version: 2.1
+orbs:
+  unity: game-ci/unity@1.4.0
 
 jobs:
   build:
-    environment:
-      UNITY_VERSION: "2021.3.19f1"
-      UNITY_DOWNLOAD_CACHE: "~/unity_download_cache"
-    working_directory: ~/project
-    executor:
-      name: windows/Unity
-      shell: powershell.exe
+    docker:
+      - image: circleci/android:api-30
     steps:
       - checkout
-      - run: choco install jdk8 -y
-      - run: choco install git -y
-      - run: git lfs install --skip-smudge
-      - run: |
-          $progressPreference = 'SilentlyContinue'
-          $webClient = New-Object System.Net.WebClient
-          $webClient.DownloadFile("https://beta.unity3d.com/download/${{ env.UNITY_VERSION }}/MacEditorInstaller/Unity-${{ env.UNITY_VERSION }}.exe", "$(Join-Path $env:USERPROFILE 'UnitySetup.exe')")
-      - run: Start-Process -FilePath "$(Join-Path $env:USERPROFILE 'UnitySetup.exe')" -ArgumentList '/S /D=$(Join-Path ${env:ProgramFiles(x86)} "Unity")' -Wait
-      - run: Add-Content -Path $(Join-Path $env:USERPROFILE '.bashrc') -Value 'export PATH="$PATH:/c/Program Files (x86)/Unity/Editor"'
-      - run: source ~/.bashrc
-      - run: unity -quit -batchmode -createProject $(Join-Path $env:USERPROFILE 'project') -logFile $(Join-Path $env:USERPROFILE 'unity.log')
+      - run: docker run
+      - run: unity-editor -batchmode -nographics -quit -projectPath ./ -executeMethod BuildScript.BuildAndroid
+      - store_artifacts:
+          path: ~/repo/Builds
+          destination: builds
+
+workflows:
+  build-only:
+    jobs:
+      - build
+
+
