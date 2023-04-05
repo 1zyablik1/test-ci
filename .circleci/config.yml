@@ -1,0 +1,17 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/android:api-30
+    steps:
+      - checkout
+      - run: unity-editor -batchmode -nographics -quit -projectPath ./ -executeMethod BuildScript.BuildAndroid
+      - store_artifacts:
+          path: ~/repo/Builds
+          destination: builds
+
+workflows:
+  build-only:
+    jobs:
+      - build
