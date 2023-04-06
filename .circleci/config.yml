@@ -10,8 +10,6 @@ jobs:
           command: |
             curl -o Unity.pkg https://download.unity3d.com/download_unity/2021.3.19f1/MacEditorInstaller/Unity-2021.3.19f1.pkg      
   install:
-    macos:
-      xcode: 13.0.0
     steps:
       - run:
           name: Install Unity
