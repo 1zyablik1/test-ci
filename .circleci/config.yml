@@ -1,36 +1,50 @@
-version: 2.1
-
 jobs:
-  build:
+  load:
     macos:
-      xcode: 12.5.1
-    environment:
-      UNITY_LICENSE: "UNITY_LICENSE_CONTENT"
+      xcode: 13.0.0
+    steps:
+      - run:
+          name: load Unity
+          command: |
+            curl -o Unity.pkg https://download.unity3d.com/download_unity/2021.3.19f1/MacEditorInstaller/Unity-2021.3.19f1.pkg      
+  install:
+    macos:
+      xcode: 13.0.0
+    steps:
+      - run:
+          name: Install Unity
+          command: | 
+            sudo installer -dumplog -package Unity.pkg -target /
+  build:
+      macos:
+      xcode: 13.0.0
     steps:
       - checkout
       - run:
-          name: Install Unity Editor
+          name: Activate Unity license
           command: |
-            mkdir -p ~/Unity
-            cd ~/Unity
-            curl -o Unity.pkg https://download.unity3d.com/download_unity/personal/Unity-2021.3.19f1.pkg
-            sudo installer -dumplog -package Unity.pkg -target /
+            sudo /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/MacOS/Unity \
+            -quit \
+            -batchmode \
+            -nographics \
+            -username "darkzencore@gmail.com" \
+            -password "Zyablik2001zyablo"
       - run:
-          name: Build Unity Project
+          name: Build Unity project
           command: |
-            cd /path/to/unity/project
-            /Applications/Unity/Unity.app/Contents/MacOS/Unity \
-              -batchmode \
-              -nographics \
-              -quit \
-              -projectPath . \
-              -executeMethod BuildScript.PerformBuild \
-              -logFile $(pwd)/unity.log
-      - store_artifacts:
-          path: /path/to/unity/project/Build
-          destination: builds
-
+            /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/MacOS/Unity \
+            -batchmode \
+            -projectPath "/path/to/your/project" \
+            -executeMethod BuildScript.BuildAndroid \
+            -quit
 workflows:
-  build-only:
+  build:
     jobs:
+      - load
+      - install
+        requires:
+          - load
       - build
+        requires:
+          - load
+          - install
