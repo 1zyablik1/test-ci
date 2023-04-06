@@ -9,6 +9,9 @@ jobs:
       - checkout 
       - run: ls
       - run: pwd
+      - run: cd ..
+      - run: ls
+      - run: cd ..
       - run: ls
 
 workflows:
