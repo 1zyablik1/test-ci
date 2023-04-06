@@ -1,40 +1,36 @@
 version: 2.1
 
-env:
-UNITY_VERSION="2021.3.19f1"
-UNITY_DOWNLOAD_URL="https://download.unity3d.com/download_unity/${UNITY_VERSION}/MacEditorInstaller/Unity-${UNITY_VERSION}.pkg"
-
 jobs:
   build:
     macos:
-      xcode: 13.0.0
+      xcode: 12.5.1
+    environment:
+      UNITY_LICENSE: "UNITY_LICENSE_CONTENT"
     steps:
       - checkout
-      - run: curl -o Unity.pkg $UNITY_DOWNLOAD_URL
       - run:
-          name: Install Unity
+          name: Install Unity Editor
           command: |
-            curl -o Unity.pkg https://download.unity3d.com/download_unity/2021.3.19f1/MacEditorInstaller/Unity-2021.3.19f1.pkg
+            mkdir -p ~/Unity
+            cd ~/Unity
+            curl -o Unity.pkg https://download.unity3d.com/download_unity/personal/Unity-2021.3.19f1.pkg
             sudo installer -dumplog -package Unity.pkg -target /
       - run:
-          name: Activate Unity license
+          name: Build Unity Project
           command: |
-            sudo /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/MacOS/Unity \
-            -quit \
-            -batchmode \
-            -nographics \
-            -username "darkzencore@gmail.com" \
-            -password "Zyablik2001zyablo"
-      - run:
-          name: Build Unity project
-          command: |
-            /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/MacOS/Unity \
-            -batchmode \
-            -projectPath "/path/to/your/project" \
-            -executeMethod BuildScript.BuildAndroid \
-            -quit
+            cd /path/to/unity/project
+            /Applications/Unity/Unity.app/Contents/MacOS/Unity \
+              -batchmode \
+              -nographics \
+              -quit \
+              -projectPath . \
+              -executeMethod BuildScript.PerformBuild \
+              -logFile $(pwd)/unity.log
+      - store_artifacts:
+          path: /path/to/unity/project/Build
+          destination: builds
 
 workflows:
-  build:
+  build-only:
     jobs:
       - build
