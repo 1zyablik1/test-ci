@@ -1,9 +1,11 @@
 version: 2.1
 
+os:
+
 jobs:
   build:
-    docker:
-      - image: circleci/android:api-30
+    macos:
+      xcode: 13.3.0
     steps:
       - setup_remote_docker
       - checkout 
