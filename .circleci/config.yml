@@ -3,19 +3,33 @@ version: 2.1
 jobs:
   build:
     macos:
-      xcode: 14.2.0
+      xcode: 13.0.0
     steps:
-      - checkout 
-      - run: ls
+      - checkout
       - run:
-          name: Run script
+          name: Install Unity
           command: |
-            cd /
-      - run: ls
-      - run: cd ..
-      - run: ls
+            curl -o Unity.pkg https://download.unity3d.com/download_unity/2021.3.19f1/MacEditorInstaller/Unity-2021.3.19f1.pkg
+            sudo installer -dumplog -package Unity.pkg -target /
+      - run:
+          name: Activate Unity license
+          command: |
+            sudo /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/MacOS/Unity \
+            -quit \
+            -batchmode \
+            -nographics \
+            -username "darkzencore@gmail.com" \
+            -password "Zyablik2001zyablo"
+      - run:
+          name: Build Unity project
+          command: |
+            /Applications/Unity/Hub/Editor/2021.3.19f1/Unity.app/Contents/MacOS/Unity \
+            -batchmode \
+            -projectPath "/path/to/your/project" \
+            -executeMethod BuildScript.BuildAndroid \
+            -quit
 
 workflows:
-  build-only:
+  build:
     jobs:
       - build
