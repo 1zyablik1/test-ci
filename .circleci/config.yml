@@ -8,6 +8,8 @@ jobs:
       - setup_remote_docker
       - checkout 
       - run: ls
+      - run: pwd
+      - run: ls
 
 workflows:
   build-only:
