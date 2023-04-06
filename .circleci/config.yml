@@ -9,6 +9,7 @@ jobs:
       - run:
           name: Navigate to root directory
           command: cd /
+      - run: ls
 
 workflows:
   build-only:
