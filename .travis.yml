@@ -2,5 +2,6 @@ os: osx
 script:
   - echo "The current branch is $TRAVIS_BRANCH"
   - ls
+  
 addons:
   artifacts: true
