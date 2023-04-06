@@ -5,10 +5,9 @@ os:
 jobs:
   build:
     macos:
-      xcode: 13.3.0
+      xcode: 14.2.0
     steps:
       - run: xcodebuild -version
-      - setup_remote_docker
       - checkout 
       - run: ls
       - run: pwd
