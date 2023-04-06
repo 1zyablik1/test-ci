@@ -1,17 +1,11 @@
 version: 2.1
 
-os:
-
 jobs:
   build:
     macos:
       xcode: 14.2.0
     steps:
-      - checkout 
-      - run: ls
-      - run: pwd
-      - run: cd ..
-      - run: ls
+      - run: #!/bin/bash
       - run: cd ..
       - run: ls
 
