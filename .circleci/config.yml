@@ -6,11 +6,13 @@ jobs:
       xcode: 14.2.0
     steps:
       - checkout 
+      - run: ls
       - run:
           name: Run script
           command: |
-            #!/bin/bash --login -eo pipefail
             cd /
+      - run: ls
+      - run: cd ..
       - run: ls
 
 workflows:
