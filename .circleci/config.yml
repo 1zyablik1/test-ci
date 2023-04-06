@@ -7,7 +7,7 @@ workflows:
   build-unity-project:
     jobs:
       - unity/build:
-          name: 'build-android'
+          name: build-android
           step-name: 'Build Android
           unity-username-var-name: 'darkzencore@gmail.com'
           unity-password-var-name: 'Zyablik2001zyablo'
