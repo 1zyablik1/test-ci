@@ -6,11 +6,8 @@ jobs:
       - image: circleci/android:api-30
     steps:
       - setup_remote_docker
-      - checkout
-      - run: unity-editor -batchmode -nographics -quit -projectPath ./ -executeMethod BuildScript.BuildAndroid
-      - store_artifacts:
-          path: ~/repo/Builds
-          destination: builds
+      - checkout 
+      - run: ls
 
 workflows:
   build-only:
