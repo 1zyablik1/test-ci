@@ -21,3 +21,4 @@ workflows:
           build-target: StandaloneLinux64
           compress: true
           context: unity
+
