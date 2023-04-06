@@ -6,8 +6,9 @@ jobs:
       xcode: 14.2.0
     steps:
       checkout 
-      - run: cd /
-      - run: ls
+      - run:
+          name: Navigate to root directory
+          command: cd /
 
 workflows:
   build-only:
