@@ -7,13 +7,13 @@ jobs:
     steps:
       - checkout 
       - run:
-          name: run
-          command:  #!/bin/bash cd /
+          name: Run script
+          command: |
+            #!/bin/bash --login -eo pipefail
+            cd /
       - run: ls
 
 workflows:
   build-only:
     jobs:
       - build
-
-
