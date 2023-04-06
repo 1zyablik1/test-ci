@@ -7,8 +7,8 @@ jobs:
     steps:
       - checkout 
       - run:
-          name: Navigate to root directory
-          command: cd /
+          name: run
+          command:  #!/bin/bash cd /
       - run: ls
 
 workflows:
