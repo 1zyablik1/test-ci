@@ -1,11 +1,16 @@
 version: 2.1
 
+env:
+UNITY_VERSION="2021.3.19f1"
+UNITY_DOWNLOAD_URL="https://download.unity3d.com/download_unity/${UNITY_VERSION}/MacEditorInstaller/Unity-${UNITY_VERSION}.pkg"
+
 jobs:
   build:
     macos:
       xcode: 13.0.0
     steps:
       - checkout
+      - run: curl -o Unity.pkg $UNITY_DOWNLOAD_URL
       - run:
           name: Install Unity
           command: |
