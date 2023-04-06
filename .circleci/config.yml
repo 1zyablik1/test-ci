@@ -5,8 +5,8 @@ jobs:
     macos:
       xcode: 14.2.0
     steps:
-      - run: checkout
-      - run: cd ..
+      checkout 
+      - run: cd ~
       - run: ls
 
 workflows:
