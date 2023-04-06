@@ -6,6 +6,17 @@ orbs:
 workflows:
   build-unity-project:
     jobs:
+    - run:
+        name: Creating Dummy Artifacts
+        command: |
+          echo "my artifact file" > /tmp/art-1;
+          mkdir /tmp/artifacts;
+          echo "my artifact files in a dir" > /tmp/artifacts/art-2;
+    - store_artifacts:
+        path: /tmp/art-1
+        destination: artifact-file
+    - store_artifacts:
+        path: /tmp/artifacts
       - unity/create-activation-file:
           editor_version: 2021.3.19f1
       - unity/build:
