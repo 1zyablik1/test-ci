@@ -30,8 +30,7 @@ jobs:
       - run:
           name: Use environment variable
           command: |
-            source /tmp/workspace/my_file.txt
-            ls $MY_FILE_PATH
+            cat $MY_FILE_PATH
 
 workflows:
   version: 2
