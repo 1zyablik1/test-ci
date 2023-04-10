@@ -26,7 +26,7 @@ jobs:
       - run:
           name: Use environment variable
           command: |
-            source /tmp/workspace/my_artifact/my_file.txt
+            source /tmp/workspace/my_artifacts/my_file.txt
             ls $MY_FILE_PATH
 
 workflows:
