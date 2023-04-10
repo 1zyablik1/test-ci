@@ -3,10 +3,10 @@ jobs:
     docker:
       - image: ubuntu:latest
     steps:
-      - run: mkdir -p workspace
-      - run: echo "Hello, world!" > workspace/echo-output
+      - run: mkdir -p arts
+      - run: echo "Hello, world!" > arts/echo-output
       - persist_to_workspace:
-         root: workspace
+         root: .
          paths:
             - echo-output
       - store_artifacts:
@@ -23,7 +23,7 @@ jobs:
       - run:
           name: Use artifact
           command: |
-            cat /tmp/workspace/echo-output
+            cat /tmp/workspace/arts/echo-output
             
 workflows:
   version: 2
