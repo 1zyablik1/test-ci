@@ -9,13 +9,11 @@ jobs:
       - run:
           name: Create empty file
           command: |
-            touch /tmp/my_file.txt
+            touch my_file.txt
             echo "Created my_file.txt"
       - store_artifacts:
-          path: /tmp/my_file.txt
+          path: my_file.txt
           destination: artifact-file
-      - store_artifacts:
-          path: /tmp/artifacts
 
   receive:
     docker:
