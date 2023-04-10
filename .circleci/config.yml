@@ -13,7 +13,7 @@ jobs:
             echo "Created my_file.txt"
       - store_artifacts:
           path: my_file.txt
-          destination: artifact-file
+          destination: my_artifacts
 
   receive:
     docker:
