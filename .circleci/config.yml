@@ -22,7 +22,7 @@ jobs:
         name: Use environment variable
         command: |
           source $(retrieve_artifacts my_file.txt)
-      run: ls
+          ls
 
 workflows:
   version: 2
