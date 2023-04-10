@@ -8,7 +8,7 @@ jobs:
       - persist_to_workspace:
          root: .
          paths:
-            - echo-output
+            - arts
       - store_artifacts:
           path: workspace
           destination: my_artifacts
