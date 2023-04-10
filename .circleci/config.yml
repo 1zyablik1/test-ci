@@ -14,6 +14,7 @@ jobs:
       - store_artifacts:
           path: my_file.txt
           destination: my_artifacts
+      - run: ls
 
   receive:
     docker:
