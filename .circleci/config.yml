@@ -23,7 +23,7 @@ jobs:
       - run:
           name: Use artifact
           command: |
-            cat /tmp/workspace/workspace/echo-output
+            cat /tmp/workspace/echo-output
             
 workflows:
   version: 2
