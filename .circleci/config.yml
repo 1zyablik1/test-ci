@@ -11,7 +11,7 @@ jobs:
           command: |
             touch my_file.txt
             echo "Created my_file.txt"
-      - store_artifacts:
+      - store_test_results:
           path: my_file.txt
           destination: my_artifact
 
