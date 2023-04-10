@@ -3,7 +3,9 @@ jobs:
     docker:
       - image: 1zyablik1/myapp
     steps:
-      -run: cowsay "HI"
+      - run:
+          name: Run tests
+          command: cowsay Hi
             
 workflows:
   version: 2
