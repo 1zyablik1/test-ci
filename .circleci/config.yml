@@ -9,7 +9,7 @@ jobs:
       - run:
           name: Create empty file
           command: |
-            touch my_file.txt
+            echo "hello world" > my_file.txt
             echo "Created my_file.txt"
       - store_artifacts:
           path: my_file.txt
