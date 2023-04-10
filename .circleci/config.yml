@@ -20,7 +20,7 @@ jobs:
       - image: cimg/base:stable
     steps:
       - attach_workspace:
-          at: /tmp/workspace
+          at: ~/
       - run: ls
       - run:
           name: Use environment variable
