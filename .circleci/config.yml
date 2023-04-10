@@ -16,7 +16,7 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp/workspace
-      - run ls
+      - run: ls
       - run:
           name: Use artifact
           command: |
