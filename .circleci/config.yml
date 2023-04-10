@@ -26,9 +26,7 @@ jobs:
       - attach_workspace:
           at: /tmp/workspace
       - run: ls
-      - run:
-            name: "Fix CIRCLE_WORKING_DIRECTORY"
-            command: echo 'CIRCLE_WORKING_DIRECTORY="${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}"' >> $BASH_ENV
+      - run: echo 'CIRCLE_WORKING_DIRECTORY="${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}"' >> $BASH_ENV
       - run: ls $MY_FILE_PATH
       - run:
           name: Use environment variable
