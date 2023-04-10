@@ -11,9 +11,11 @@ jobs:
           command: |
             touch my_file.txt
             echo "Created my_file.txt"
-      - store_test_results:
-          path: my_file.txt
-          destination: my_artifact
+      - store_artifacts:
+          path: /tmp/my_file.txt
+          destination: artifact-file
+      - store_artifacts:
+          path: /tmp/artifacts
 
   receive:
     docker:
