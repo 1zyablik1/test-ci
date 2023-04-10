@@ -19,19 +19,14 @@ jobs:
   receive:
     docker:
       - image: cimg/base:stable
-    environment:
-      MY_FILE_PATH: "/tmp/workspace/my_artifacts/my_file.txt"
     steps:
       - run: ls
       - attach_workspace:
           at: /tmp/workspace
-      - run: ls
-      - run: echo 'CIRCLE_WORKING_DIRECTORY="${CIRCLE_WORKING_DIRECTORY/#\~/$HOME}"' >> $BASH_ENV
-      - run: ls $MY_FILE_PATH
       - run:
           name: Use environment variable
           command: |
-            cat $MY_FILE_PATH
+            cat /tmp/workspace/my_artifacts/my_file.txt
 
 workflows:
   version: 2
