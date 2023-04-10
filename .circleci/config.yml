@@ -23,14 +23,7 @@ jobs:
       MY_FILE_PATH: "${CIRCLE_WORKING_DIRECTORY}/my_artifacts/my_file.txt"
     steps:
       - run: ls
-      - attach_workspace:
-          at: /tmp/workspace
-      - run: ls
-      - run:
-          name: Use environment variable
-          command: |
-            source $MY_FILE_PATH
-            ls $MY_FILE_PATH
+      
 
 workflows:
   version: 2
