@@ -22,13 +22,14 @@ jobs:
     environment:
       MY_FILE_PATH: "~/my_file.txt"
     steps:
+      - run: ls
       - attach_workspace:
           at: /tmp/workspace
       - run: ls
       - run:
           name: Use environment variable
           command: |
-            source /tmp/workspace/my_artifacts/my_file.txt
+            source /tmp/workspace/my_file.txt
             ls $MY_FILE_PATH
 
 workflows:
