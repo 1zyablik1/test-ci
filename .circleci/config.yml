@@ -14,6 +14,9 @@ jobs:
     macos:
       xcode: "12.5.1"
     steps:
+      - run:
+          name: Create artifact
+          command: echo "hello world" > my_file.txt
       - attach_workspace:
           at: ~/project
       - run: ls
