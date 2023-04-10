@@ -5,33 +5,35 @@ jobs:
     docker:
       - image: circleci/python:3.9.1
     steps:
+      - checkout
       - run:
-          name: Create empty file
+          name: Create artifact
           command: |
-            echo "hello world" > my_file.txt
-            echo "Created my_file.txt"
+            echo "hello world" > my_artifact.txt
+            echo "Created my_artifact.txt"
       - store_artifacts:
-          path: my_file.txt
+          path: my_artifact.txt
           destination: my_artifacts
-      - run: ls
 
-  receive:
-    docker:
-      - image: cimg/base:stable
+  deploy:
+    macos:
+      xcode: "12.5.1"
     steps:
-      - attach_workspace:
-          at: ~/
-      - run: ls
+      - retrieve_artifacts:
+          path: my_artifacts
       - run:
-          name: Use environment variable
+          name: Use artifact
           command: |
-            cat /tmp/workspace/my_artifacts/my_file.txt
+            cat my_artifacts/my_artifact.txt
 
 workflows:
   version: 2
   build-and-deploy:
     jobs:
       - build
-      - receive:
+      - deploy:
           requires:
             - build
+          filters:
+            branches:
+              only: master
