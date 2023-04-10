@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/python:3.9.1
     steps:
-      - run: ls
+      - checkout
       - run:
           name: Create empty file
           command: |
@@ -23,7 +23,15 @@ jobs:
       MY_FILE_PATH: "${CIRCLE_WORKING_DIRECTORY}/my_artifacts/my_file.txt"
     steps:
       - run: ls
-      
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: ls
+      - run: ls $MY_FILE_PATH
+      - run:
+          name: Use environment variable
+          command: |
+            source /tmp/workspace/my_file.txt
+            ls $MY_FILE_PATH
 
 workflows:
   version: 2
