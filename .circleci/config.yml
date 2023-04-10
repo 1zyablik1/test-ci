@@ -8,7 +8,7 @@ jobs:
           command: cowsay Hi
       - run: ls
       - checkout:
-        path: src
+          path: app
       - run: ls
       
 workflows:
