@@ -20,7 +20,7 @@ jobs:
     docker:
       - image: circleci/python:3.9.1
     environment:
-      MY_FILE_PATH: "${CIRCLE_WORKING_DIRECTORY}/my_artifacts/my_file.txt"
+      MY_FILE_PATH: "/tmp/workspace/my_artifacts/my_file.txt"
     steps:
       - run: ls
       - attach_workspace:
