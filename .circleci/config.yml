@@ -30,6 +30,3 @@ workflows:
       - receive:
           requires:
             - build
-          filters:
-            branches:
-              only: master
