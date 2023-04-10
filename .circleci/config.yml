@@ -18,7 +18,7 @@ jobs:
 
   receive:
     docker:
-      - image: circleci/python:3.9.1
+      - image: ubuntu-2204:2023.02.1
     environment:
       MY_FILE_PATH: "/tmp/workspace/my_artifacts/my_file.txt"
     steps:
