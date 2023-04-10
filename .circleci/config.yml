@@ -5,7 +5,7 @@ jobs:
     docker:
       - image: circleci/python:3.9.1
     steps:
-      - checkout
+      - run: ls
       - run:
           name: Create empty file
           command: |
