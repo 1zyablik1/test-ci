@@ -1,20 +1,18 @@
-version: 2.1
-
 jobs:
   build:
     docker:
-      - image: circleci/android:api-30
+      - image: 1zyablik1/myapp
     steps:
-      - setup_remote_docker
-      - checkout
-      - run: unity-editor -batchmode -nographics -quit -projectPath ./ -executeMethod BuildScript.BuildAndroid
-      - store_artifacts:
-          path: ~/repo/Builds
-          destination: builds
-
+      - run:
+          name: Run tests
+          command: cowsay Hi
+      - run: ls
+      - checkout:
+          path: app
+      - run: ls
+      
 workflows:
-  build-only:
+  version: 2
+  build-and-deploy:
     jobs:
       - build
-
-
