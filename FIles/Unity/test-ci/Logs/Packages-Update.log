@@ -1,0 +1,8 @@
+
+=== Tue Apr 11 11:25:20 2023
+
+Packages were changed.
+Update Mode: resetToDefaultDependencies
+
+The following packages were removed:
+  com.unity.feature.development@1.0.1
