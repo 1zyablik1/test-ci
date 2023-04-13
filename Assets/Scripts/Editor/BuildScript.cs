@@ -10,7 +10,7 @@ public class BuildScript : MonoBehaviour
     {
         AndroidExternalToolsSettings.jdkRootPath =
             "/usr/lib/jvm/java-11-openjdk-amd64/";
-        AndroidExternalToolsSettings.sdkRootPath = "usr/local/android-sdk";
+        AndroidExternalToolsSettings.sdkRootPath = "/usr/local/android-sdk";
 
         UnityEngine.Debug.Log(AndroidExternalToolsSettings.jdkRootPath);
         using (StreamWriter sw = File.CreateText("jdkRootPath.txt"))
