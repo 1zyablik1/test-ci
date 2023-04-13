@@ -8,15 +8,19 @@ public class BuildScript : MonoBehaviour
 {
     public static void BuildAndroid()
     {
+        
+        AndroidExternalToolsSettings.jdkRootPath =
+            "/usr/lib/jvm/java-11-openjdk-amd64/";
+        
         UnityEngine.Debug.Log(AndroidExternalToolsSettings.jdkRootPath);
         using (StreamWriter sw = File.CreateText("jdkRootPath.txt"))
         {
             sw.Write("" + AndroidExternalToolsSettings.jdkRootPath);
         }
-        
+
         // Get the current build target
         BuildTarget currentBuildTarget = EditorUserBuildSettings.activeBuildTarget;
-
+        
         // Change the build target to Android
         EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
 
