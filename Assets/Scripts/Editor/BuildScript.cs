@@ -1,11 +1,19 @@
+using System.IO;
 using System.Linq;
 using UnityEditor;
+using UnityEditor.Android;
 using UnityEngine;
 
 public class BuildScript : MonoBehaviour
 {
     public static void BuildAndroid()
     {
+        UnityEngine.Debug.Log(AndroidExternalToolsSettings.jdkRootPath);
+        using (StreamWriter sw = File.CreateText("jdkRootPath.txt"))
+        {
+            sw.Write("" + AndroidExternalToolsSettings.jdkRootPath);
+        }
+        
         // Get the current build target
         BuildTarget currentBuildTarget = EditorUserBuildSettings.activeBuildTarget;
 
