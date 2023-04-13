@@ -12,7 +12,7 @@ public class BuildScript : MonoBehaviour
         AndroidExternalToolsSettings.jdkRootPath =
             "/opt/unity/editors/2022.2.14f1/Editor/Data/PlaybackEngines/AndroidPlayer/OpenJDK";
         
-        UnityEngine.Debug.Log(AndroidExternalToolsSettings.jdkRootPath);
+        UnityEngine.Debug.Log(AndroidExternalToolsSettings.jdkRootPath + " llllllllllllllllllllllll");
         using (StreamWriter sw = File.CreateText("jdkRootPath.txt"))
         {
             sw.Write("" + AndroidExternalToolsSettings.jdkRootPath);
