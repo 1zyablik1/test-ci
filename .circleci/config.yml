@@ -11,7 +11,7 @@ jobs:
           command: |
             Xvfb :1 -screen 0 1280x720x24 &
             export DISPLAY=:1
-            unity -batchmode -projectPath /unityPrj/test-ci/ -executeMethod BuildScript.BuildAndroid -quit
+            unity -batchmode -projectPath /root/project/unityPrj/test-ci/ -executeMethod BuildScript.BuildAndroid -quit
       - run:
           name: Display Unity log
           command: cat /root/.config/unity3d/Editor.log
