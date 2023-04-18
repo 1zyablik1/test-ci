@@ -20,6 +20,8 @@ jobs:
           name: Display Unity log
           command: cat /root/.config/unity3d/Editor.log
           when: always
+      - store_artifacts:
+          path: /root/project/unityPrj/Builds/Android/
           
 workflows:
   version: 2
