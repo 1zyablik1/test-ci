@@ -4,8 +4,9 @@ jobs:
       - image: 1zyablik1/unity
       
     steps:
-      - checkout:
-          path: /root/project/unityPrj/
+      - run:
+          name: git
+          command: git clone https://github.com/1zyablik1/test-ci.git /unityPrj
       - run:
           name: setup display
           command: |
