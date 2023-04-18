@@ -1,5 +1,5 @@
 jobs:
-  build:
+  buildAndroid:
     docker:
       - image: 1zyablik1/unity
       
@@ -7,9 +7,6 @@ jobs:
       - run:
           name: git
           command: git clone https://github.com/1zyablik1/test-ci.git /root/project/unityPrj
-      - run:
-          name: check directory
-          command: ls /root/project/unityPrj
       - run:
           name: setup display
           command: |
@@ -22,9 +19,36 @@ jobs:
           when: always
       - store_artifacts:
           path: /root/project/unityPrj/Builds/Android/
+          destination: Andriod
+          
+  buildIos:
+    docker:
+      - image: 1zyablik1/unity
+      
+    steps:
+      - run:
+          name: git
+          command: git clone https://github.com/1zyablik1/test-ci.git /root/project/unityPrj
+      - run:
+          name: setup display
+          command: |
+            Xvfb :1 -screen 0 1280x720x24 &
+            export DISPLAY=:1
+            unity -batchmode -projectPath /unityPrj/ -executeMethod BuildScript.BuildIos -quit
+      - run:
+          name: Display Unity log
+          command: cat /root/.config/unity3d/Editor.log
+          when: always
+      - store_artifacts:
+          path: /root/project/unityPrj/Builds/Ios/
+          destination: Ios
+      - persist_to_workspace:
+          root: /root/project/unityPrj/Builds/Ios/
           
 workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - build
+      - buildAndroid
+      - buildIos
+      
