@@ -5,7 +5,7 @@ jobs:
       
     steps:
       - checkout:
-          path: /unityPrj/
+          path: /root/project/unityPrj/
       - run:
           name: setup display
           command: |
