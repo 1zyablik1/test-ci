@@ -9,11 +9,7 @@ jobs:
       - run:
           name: setup display
           command: Xvfb :1 -screen 0 1280x720x24 &
-      - run:
-          name: setup display
           command: export DISPLAY=:1
-      - run:
-          name: Build Android
           command: unity -batchmode -projectPath /unityPrj/test-ci/ -executeMethod
             BuildScript.BuildAndroid -quit
       - run:
