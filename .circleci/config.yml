@@ -43,9 +43,9 @@ jobs:
           name: LS
           command: ls ~/project/unityPrj/Builds/iOS/
       - persist_to_workspace:
-          root: ~/project/unityPrj/Builds/
+          root: ~/
           path:
-            - "iOS"
+            - "project"
           
 workflows:
   version: 2
