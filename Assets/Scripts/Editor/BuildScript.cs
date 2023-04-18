@@ -8,17 +8,6 @@ public class BuildScript : MonoBehaviour
 {
     public static void BuildAndroid()
     {
-        AndroidExternalToolsSettings.jdkRootPath =
-            "/usr/lib/jvm/java-11-openjdk-amd64/";
-        AndroidExternalToolsSettings.sdkRootPath = "/usr/local/android-sdk";
-        AndroidExternalToolsSettings.ndkRootPath = "/usr/local/NDK/android-ndk-r23b";
-        
-        UnityEngine.Debug.Log(AndroidExternalToolsSettings.jdkRootPath);
-        using (StreamWriter sw = File.CreateText("jdkRootPath.txt"))
-        {
-            sw.Write("" + AndroidExternalToolsSettings.jdkRootPath);
-        }
-
         // Get the current build target
         BuildTarget currentBuildTarget = EditorUserBuildSettings.activeBuildTarget;
 
@@ -31,6 +20,30 @@ public class BuildScript : MonoBehaviour
             scenes = EditorBuildSettings.scenes.Select(s => s.path).ToArray(),
             locationPathName = "./Builds/Android/my_game.apk",
             target = BuildTarget.Android,
+            options = BuildOptions.None
+        };
+
+        // Build the player
+        BuildPipeline.BuildPlayer(buildPlayerOptions);
+
+        // Change the build target back to the original
+        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Unknown, currentBuildTarget);
+    }
+    
+    public static void BuildIos()
+    {
+        // Get the current build target
+        BuildTarget currentBuildTarget = EditorUserBuildSettings.activeBuildTarget;
+
+        // Change the build target to iOS
+        EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.iOS, BuildTarget.iOS);
+
+        // Set the build options
+        BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions
+        {
+            scenes = EditorBuildSettings.scenes.Select(s => s.path).ToArray(),
+            locationPathName = "./Builds/iOS/my_game",
+            target = BuildTarget.iOS,
             options = BuildOptions.None
         };
 
