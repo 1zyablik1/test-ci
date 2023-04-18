@@ -41,11 +41,11 @@ jobs:
           when: always
       - run:
           name: LS
-          command: ls /root/project/unityPrj/Builds/iOS/
+          command: ls ~/project/unityPrj/Builds/iOS/
       - persist_to_workspace:
           root: ~/project/unityPrj/Builds/iOS/
           path:
-            - .
+            - Info.plist
           
 workflows:
   version: 2
