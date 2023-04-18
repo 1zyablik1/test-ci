@@ -22,6 +22,7 @@ jobs:
           destination: Andriod
           
   buildIos:
+    working_directory: ~/project
     docker:
       - image: 1zyablik1/unity
       
@@ -30,7 +31,7 @@ jobs:
           name: git
           command: git clone https://github.com/1zyablik1/test-ci.git /root/project/unityPrj
       - run:
-          name: setup display
+          name: build
           command: |
             Xvfb :1 -screen 0 1280x720x24 &
             export DISPLAY=:1
@@ -43,9 +44,9 @@ jobs:
           name: LS
           command: ls ~/project/unityPrj/Builds/iOS/
       - persist_to_workspace:
-          root: ~/project/unityPrj/Builds/iOS/
+          root: /unityPrj/Builds/
           path:
-            - Info.plist
+            - "iOS"
           
 workflows:
   version: 2
