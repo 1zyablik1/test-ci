@@ -5,8 +5,7 @@ jobs:
       - image: 1zyablik1/unity
       
     steps:
-      - checkout:
-          path: /unityPrj/
+      - checkout
       - run:
           name: Build Android
           command: unity -batchmode -projectPath /unityPrj/test-ci/ -executeMethod
