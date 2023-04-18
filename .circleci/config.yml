@@ -18,6 +18,7 @@ jobs:
       - run:
           name: Display Unity log
           command: cat /root/.config/unity3d/Editor.log
+        when: always
 
 workflows:
   version: 2
