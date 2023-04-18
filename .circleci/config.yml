@@ -1,14 +1,12 @@
 jobs:
   build:
     docker:
-      - image: 1zyablik1/myapp
+      - image: 1zyablik1/unity
     steps:
-      - run:
-          name: Run tests
-          command: cowsay Hi
       - run: ls
       - checkout:
-          path: app
+          path: /unityPrj/
+      - run: unity -batchmode -projectPath /unityPrj/test-ci/ -executeMethod BuildScript.BuildAndroid -quit
       - run: ls
       
 workflows:
