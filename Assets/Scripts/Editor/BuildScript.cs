@@ -8,16 +8,16 @@ public class BuildScript : MonoBehaviour
 {
     public static void BuildAndroid()
     {
-        AndroidExternalToolsSettings.jdkRootPath =
-            "/usr/lib/jvm/java-11-openjdk-amd64/";
-        AndroidExternalToolsSettings.sdkRootPath = "/usr/local/android-sdk";
-        AndroidExternalToolsSettings.ndkRootPath = "/usr/local/NDK/android-ndk-r23b";
+        //AndroidExternalToolsSettings.jdkRootPath =
+       //     "/usr/lib/jvm/java-11-openjdk-amd64/";
+        //AndroidExternalToolsSettings.sdkRootPath = "/usr/local/android-sdk";
+        //AndroidExternalToolsSettings.ndkRootPath = "/usr/local/NDK/android-ndk-r23b";
         
-        UnityEngine.Debug.Log(AndroidExternalToolsSettings.jdkRootPath);
-        using (StreamWriter sw = File.CreateText("jdkRootPath.txt"))
-        {
-            sw.Write("" + AndroidExternalToolsSettings.jdkRootPath);
-        }
+        //UnityEngine.Debug.Log(AndroidExternalToolsSettings.jdkRootPath);
+        //using (StreamWriter sw = File.CreateText("jdkRootPath.txt"))
+        //{
+          //  sw.Write("" + AndroidExternalToolsSettings.jdkRootPath);
+        //}
 
         // Get the current build target
         BuildTarget currentBuildTarget = EditorUserBuildSettings.activeBuildTarget;
