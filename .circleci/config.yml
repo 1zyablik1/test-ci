@@ -3,11 +3,11 @@ jobs:
     docker:
       - image: 1zyablik1/unity
     steps:
-      - run: ls
       - checkout:
           path: /unityPrj/
-      - run: unity -batchmode -projectPath /unityPrj/test-ci/ -executeMethod BuildScript.BuildAndroid -quit
-      - run: ls
+      - run:
+          name: Build Android
+          command: unity -batchmode -projectPath /unityPrj/test-ci/ -executeMethod BuildScript.BuildAndroid -quit
       
 workflows:
   version: 2
