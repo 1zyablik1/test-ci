@@ -8,6 +8,9 @@ jobs:
           name: git
           command: git clone https://github.com/1zyablik1/test-ci.git /root/project/unityPrj
       - run:
+          name: check directory
+          command: ls /root/project/unityPrj
+      - run:
           name: setup display
           command: |
             Xvfb :1 -screen 0 1280x720x24 &
