@@ -41,11 +41,11 @@ jobs:
           when: always
       - run:
           name: LS
-          command: ls /root/project/unityPrj/Builds/iOS
+          command: ls /root/project/unityPrj/Builds/iOS/
       - persist_to_workspace:
-          root: /unityPrj/Builds/iOS
+          root: /root/project
           path:
-            - process_symbols.sh
+            - unityPrj/Builds/iOS/
           
 workflows:
   version: 2
