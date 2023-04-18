@@ -40,10 +40,10 @@ jobs:
           command: cat /root/.config/unity3d/Editor.log
           when: always
       - store_artifacts:
-          path: /root/project/unityPrj/Builds/Ios/
-          destination: Ios
+          path: /root/project/unityPrj/Builds/iOS/
+          destination: iOS
       - persist_to_workspace:
-          root: /root/project/unityPrj/Builds/Ios/
+          root: /root/project/unityPrj/Builds/iOS/
           
 workflows:
   version: 2
