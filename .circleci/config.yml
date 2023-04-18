@@ -22,7 +22,6 @@ jobs:
           destination: Andriod
           
   buildIos:
-    working_directory: ~/project
     docker:
       - image: 1zyablik1/unity
       
@@ -44,7 +43,7 @@ jobs:
           name: LS
           command: ls ~/project/unityPrj/Builds/iOS/
       - persist_to_workspace:
-          root: /unityPrj/Builds/
+          root: ~/project/unityPrj/Builds/
           path:
             - "iOS"
           
