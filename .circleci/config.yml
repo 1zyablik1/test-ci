@@ -44,12 +44,12 @@ jobs:
           command: ls /root/project/unityPrj/Builds/iOS
       - persist_to_workspace:
           root: /root/project/unityPrj/Builds/iOS
-          path: process_symbols.sh
+          path:
+            - process_symbols.sh
           
 workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - buildAndroid
       - buildIos
       
