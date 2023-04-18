@@ -2,13 +2,20 @@ jobs:
   build:
     docker:
       - image: 1zyablik1/unity
+        # монтируем папку внутри контейнера
+      - volume:
+          name: unity-prj
+          path: /unityPrj
     steps:
-      - checkout:
-          path: /unityPrj/
+      - checkout
+        # указываем checkout в корневую папку проекта
+        # чтобы путь /unityPrj/ был правильным
+        # при монтировании в контейнер
+        path: /
       - run:
           name: Build Android
           command: unity -batchmode -projectPath /unityPrj/test-ci/ -executeMethod BuildScript.BuildAndroid -quit
-      
+
 workflows:
   version: 2
   build-and-deploy:
