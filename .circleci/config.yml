@@ -1,16 +1,14 @@
----
 jobs:
   build:
     docker:
       - image: 1zyablik1/unity
-      
     steps:
-      - checkout
+      - checkout:
+          path: /unityPrj/
       - run:
           name: Build Android
-          command: unity -batchmode -projectPath /unityPrj/test-ci/ -executeMethod
-            BuildScript.BuildAndroid -quit
-          
+          command: unity -batchmode -projectPath /unityPrj/test-ci/ -executeMethod BuildScript.BuildAndroid -quit
+      
 workflows:
   version: 2
   build-and-deploy:
