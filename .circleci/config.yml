@@ -10,8 +10,7 @@ jobs:
           path: /unityPrj/
       - run:
           name: Build Android
-          command: unity -batchmode -projectPath /unityPrj/test-ci/ -executeMethod
-            BuildScript.BuildAndroid -quit
+          command: unity -batchmode -projectPath /unityPrj/test-ci/ -executeMethod BuildScript.BuildAndroid -quit
       - run:
           name: Display Unity log
           command: cat /root/.config/unity3d/Editor.log
