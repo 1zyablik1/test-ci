@@ -43,8 +43,8 @@ jobs:
           path: /root/project/unityPrj/Builds/iOS/
           destination: iOS
       - persist_to_workspace:
-          root: /root/project/unityPrj/Builds/
-          path: "**/*"
+          root: /root/project/unityPrj/Builds/iOS
+          path: *
           
 workflows:
   version: 2
