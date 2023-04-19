@@ -22,6 +22,7 @@ jobs:
           destination: Andriod
           
   buildIos:
+    working_directory: ~/project
     docker:
       - image: 1zyablik1/unity
       
@@ -30,7 +31,7 @@ jobs:
           name: git
           command: git clone https://github.com/1zyablik1/test-ci.git /root/project/unityPrj
       - run:
-          name: setup display
+          name: build
           command: |
             Xvfb :1 -screen 0 1280x720x24 &
             export DISPLAY=:1
@@ -39,16 +40,35 @@ jobs:
           name: Display Unity log
           command: cat /root/.config/unity3d/Editor.log
           when: always
-      - store_artifacts:
-          path: /root/project/unityPrj/Builds/iOS/
-          destination: iOS
+      - run:
+          name: LS
+          command: ls ~/project/unityPrj/Builds/iOS/
       - persist_to_workspace:
-          root: /root/project/unityPrj/Builds/iOS/
-          
+          root: ./unityPrj/Builds/iOS
+          paths:
+            - .
+      
+  receive:
+    macos:
+      xcode: "12.5.1"
+    steps:
+      - attach_workspace:
+          at: /tmp/ios
+      - run:
+          name: Use artifact
+          command: ls /tmp/ios/Unity-iPhone.xcodeproj/
+      - run: 
+          name: xcode
+          command: |
+            xcrun instruments -w 'iPhone 7 (10.3)' || sleep 15
+            xcodebuild -project /tmp/ios/Unity-iPhone.xcodeproj -configuration Release -destination generic/platform=iOS
+      
 workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - buildAndroid
       - buildIos
+      - receive:
+          requires:
+            - buildIos
       

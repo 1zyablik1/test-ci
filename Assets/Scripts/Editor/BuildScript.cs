@@ -45,7 +45,7 @@ public class BuildScript : MonoBehaviour
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions
         {
             scenes = EditorBuildSettings.scenes.Select(s => s.path).ToArray(),
-            locationPathName = "./Builds/iOS/my_game",
+            locationPathName = "./Builds/iOS/",
             target = BuildTarget.iOS,
             options = BuildOptions.None
         };
