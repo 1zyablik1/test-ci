@@ -56,10 +56,10 @@ jobs:
           at: /tmp/ios
       - run:
           name: Use artifact
-          command: ls /tmp/ios
+          command: ls /tmp/ios/Unity-iPhone.xcodeproj/
       - run: 
           name: xcode
-          command: xcodebuild -project /tmp/ios/Unity-iPhone.xcodeproj/project.xcodeproj -configuration Release -destination generic/platform=iOS
+          command: xcodebuild -project /tmp/ios/Unity-iPhone.xcodeproj -configuration Release -destination generic/platform=iOS
       
 workflows:
   version: 2
