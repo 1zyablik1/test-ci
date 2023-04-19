@@ -38,6 +38,9 @@ public class BuildScript : MonoBehaviour
         // Change the build target to iOS
         EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.iOS, BuildTarget.iOS);
 
+        EditorUserBuildSettings.development = true;
+        EditorUserBuildSettings.allowDebugging = true;
+        
         // Set the build options
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions
         {
