@@ -59,7 +59,9 @@ jobs:
           command: ls /tmp/ios/Unity-iPhone.xcodeproj/
       - run: 
           name: xcode
-          command: xcodebuild -project /tmp/ios/Unity-iPhone.xcodeproj -configuration Release -destination generic/platform=iOS
+          command: |
+            xcrun instruments -w 'iPhone 7 (10.3)' || sleep 15
+            xcodebuild -project /tmp/ios/Unity-iPhone.xcodeproj -configuration Release -destination generic/platform=iOS
       
 workflows:
   version: 2
