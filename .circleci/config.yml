@@ -59,7 +59,7 @@ jobs:
           command: ls /tmp/ios
       - run: 
           name: xcode
-          command: xcodebuild -project /tmo/ios/Unity-iPhone.xcodeproj/project.xcodeproj -configuration Release -destination generic/platform=iOS
+          command: xcodebuild -project /tmp/ios/Unity-iPhone.xcodeproj/project.xcodeproj -configuration Release -destination generic/platform=iOS
       
 workflows:
   version: 2
