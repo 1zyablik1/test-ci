@@ -8,5 +8,7 @@ jobs:
   open-url:
     runs-on: ubuntu-latest
     steps:
+      - name: sss
+        run: apt-get install xdg-utils
       - name: Open Google
         run: xdg-open https://www.google.com/
