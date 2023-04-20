@@ -8,7 +8,5 @@ jobs:
   open-url:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-    - uses: openai/action-open-url@v1
-      with:
-        url: 'https://www.google.com'
+      - name: Open Google
+        run: xdg-open https://www.google.com/
