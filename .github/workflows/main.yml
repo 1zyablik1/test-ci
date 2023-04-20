@@ -11,4 +11,4 @@ jobs:
       - name: sss
         run: sudo apt-get install w3m -y
       - name: Open Google
-        run: gnome-open https://www.google.com/
+        run: xdg-open https://www.google.com/
