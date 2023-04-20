@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: sss
-        run: sudo apt-get install -y xdg-utils
+        run: sudo apt-get install gnome-open -y
       - name: Open Google
-        run: xdg-open https://www.google.com/
+        run: gnome-open https://www.google.com/
