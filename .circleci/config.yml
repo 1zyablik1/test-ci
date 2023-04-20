@@ -19,7 +19,7 @@ jobs:
           when: always
       - run:
           name: zip bundle
-          command: ~/project/unityPrj/Builds/Android/Assets/
+          command: 7z a -t7z -m0=lzma2 -mx=9 -mfb=64 -md=32m -ms=on build.7z ~/project/unityPrj/Builds/Android/Assets
       - store_artifacts:
           path: /root/project/unityPrj/Builds/Android/
           destination: Andriod
