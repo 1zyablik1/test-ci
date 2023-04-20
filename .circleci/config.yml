@@ -17,6 +17,9 @@ jobs:
           name: Display Unity log
           command: cat /root/.config/unity3d/Editor.log
           when: always
+      - run: 
+          name: install 7zip
+          command: apt-get install p7zip-full
       - run:
           name: zip bundle
           command: 7z a -t7z -m0=lzma2 -mx=9 -mfb=64 -md=32m -ms=on build.7z ~/project/unityPrj/Builds/Android/Assets
