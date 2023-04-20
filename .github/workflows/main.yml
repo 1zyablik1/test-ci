@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: sss
-        run: sudo apt-get install gnome-open -y
+        run: sudo apt-get install w3m -y
       - name: Open Google
         run: gnome-open https://www.google.com/
