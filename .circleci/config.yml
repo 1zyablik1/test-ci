@@ -13,7 +13,7 @@ jobs:
           name: list conf;
           command: |
             git config --global user.name "Kirill Zyablitsev"
-            git config --global user.email "kzyablitsev@gmail.com:
+            git config --global user.email "kzyablitsev@gmail.com"
       - run:
           name: check data;
           command: |
