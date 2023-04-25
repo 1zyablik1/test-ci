@@ -11,7 +11,9 @@ jobs:
           command: apt-get install git -y
       - run:
           name: git
-          command: git clone -o StrictHostKeyChecking=no git@gitlab.com:kzyablitsev/test-ci.git /root/project/unityPrj
+          command: |
+            export GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no"
+            git clone git@gitlab.com:kzyablitsev/test-ci.git /root/project/unityPrj
       - run:
           name: ls
           command: ls  
