@@ -7,8 +7,8 @@ jobs:
           name: git
           command: git clone git@gitlab.com:kzyablitsev/test-ci.git /root/project/unityPrj
       - run:
-        name: ls
-        command: ls  
+          name: ls
+          command: ls  
 
   buildAndroid:
     docker:
