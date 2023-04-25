@@ -41,7 +41,11 @@ jobs:
       - run:
           name: ls
           command: ls  
-
+      - run:
+          name: ls
+          command: |
+            cd unityPrj
+            ls
   buildAndroid:
     docker:
       - image: 1zyablik1/unity
