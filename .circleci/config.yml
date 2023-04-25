@@ -25,7 +25,7 @@ jobs:
             cd /root/.ssh
             ls
       - - run:
-          name: set SSH
+          name: set SSH2
           command: |
             cd ~/.ssh
             ls
