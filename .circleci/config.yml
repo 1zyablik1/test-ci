@@ -1,4 +1,15 @@
 jobs:
+  test-chek:
+    docker:
+      - image: ubuntu:latest
+    steps:
+      - run:
+          name: git
+          command: git clone git@gitlab.com:kzyablitsev/test-ci.git /root/project/unityPrj
+      - run:
+        name: ls
+        command: ls  
+
   buildAndroid:
     docker:
       - image: 1zyablik1/unity
@@ -73,5 +84,6 @@ workflows:
   version: 2
   build-and-deploy:
     jobs:
-      - buildAndroid
+      #- buildAndroid
+      - test-chek
 
