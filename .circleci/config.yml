@@ -11,6 +11,9 @@ jobs:
           command: apt-get install git -y
       - run:
           name: list conf;
+          command: git config --global user.name "Kirill Zyablitsev"
+      - run:
+          name: list conf;
           command: git config user.name
       - run:
           name: git
