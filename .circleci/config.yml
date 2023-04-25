@@ -11,9 +11,7 @@ jobs:
           command: apt-get install git -y
       - run:
           name: list conf;
-          command: |
-            git config user.name
-            git config user.email
+          command: git config user.name
       - run:
           name: git
           command: |
