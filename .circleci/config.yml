@@ -3,6 +3,9 @@ jobs:
     docker:
       - image: ubuntu:latest
     steps:
+      - run: 
+          name: install git
+          command: apt install git
       - run:
           name: git
           command: git clone git@gitlab.com:kzyablitsev/test-ci.git /root/project/unityPrj
