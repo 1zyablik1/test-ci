@@ -24,9 +24,11 @@ jobs:
           command: |
             cd /root/.ssh
             ls
-      - - run:
+      - run:
           name: set SSH2
-          command: cd ~/.ssh
+          command: |
+            cd ~/.ssh
+            ls
       - run:
           name: git
           command: |
