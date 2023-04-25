@@ -8,7 +8,7 @@ jobs:
           command: apt-get update
       - run: 
           name: install git
-          command: apt-get install git
+          command: apt-get install git -y
       - run:
           name: git
           command: git clone git@gitlab.com:kzyablitsev/test-ci.git /root/project/unityPrj
