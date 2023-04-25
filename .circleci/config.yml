@@ -10,6 +10,9 @@ jobs:
           name: install git
           command: apt-get install git -y
       - run:
+          name: list conf;
+          command: git config --list
+      - run:
           name: git
           command: |
             export GIT_SSH_COMMAND="ssh -o StrictHostKeyChecking=no"
