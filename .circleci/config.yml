@@ -19,11 +19,7 @@ jobs:
           command: |
             git config user.name
             git config user.email
-      - run:
-          name: set SSH
-          command: |
-            cd /root/.ssh
-            ls
+
       - run:
           name: set SSH2
           command: |
